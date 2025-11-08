@@ -32,9 +32,9 @@ const Navigation = () => {
     return (
         <>
             <div className="header-top px-3 justify-content-end align-items-center d-none d-lg-flex">
-                <span className="me-3" style={{color:"grey", fontSize: "14px"}}>Hi, username</span>
+                <span className="" style={{color:"grey", fontSize: "14px"}}>Hi, username</span>
                 <Dropdown>
-                    <Dropdown.Toggle as="a" className="nav-help">Hỗ trợ</Dropdown.Toggle>
+                    <Dropdown.Toggle className="nav-help">Hỗ trợ</Dropdown.Toggle>
                     <Dropdown.Menu>
                         <Dropdown.Item as={NavLink} to="/faq">FAQ</Dropdown.Item>
                         <Dropdown.Item as={NavLink} to="/about">About</Dropdown.Item>
@@ -45,7 +45,9 @@ const Navigation = () => {
             <div className="nav-header">
                 <Navbar bg="header" className="px-3">
                     <Container fluid className="d-flex justify-content-between align-items-center">
-                        <span className="d-lg-none" style={{margin:"2vw"}} onClick={handleShowOffcanvas}><i className="fa fa-th"></i></span>
+                        <span className="d-lg-none" style={{margin:"2vw"}} onClick={handleShowOffcanvas}>
+                            <i className="fa fa-th" style={{color:"rgba(66, 66, 66, 1)"}}></i>
+                        </span>
                         <Offcanvas show={showOffcanvas} onHide={handleCloseOffcanvas} className="d-lg-none">
                             <Offcanvas.Header closeButton>
                                 <Offcanvas.Title>Hi, username</Offcanvas.Title>
@@ -82,7 +84,7 @@ const Navigation = () => {
                                 Trang chủ
                             </NavLink>
                             <Dropdown as="li">
-                                <Dropdown.Toggle as="a" className="nav-link">Sản phẩm</Dropdown.Toggle>
+                                <Dropdown.Toggle as="a" className="nav-link px-3">Sản phẩm</Dropdown.Toggle>
                                 <Dropdown.Menu>
                                     <Dropdown.Item as={NavLink} to="/product/category1">Category1</Dropdown.Item>
                                     <Dropdown.Item as={NavLink} to="/product/category2">Category2</Dropdown.Item>
