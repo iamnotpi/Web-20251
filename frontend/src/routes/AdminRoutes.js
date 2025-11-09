@@ -1,11 +1,13 @@
 import { Navigate, Outlet } from 'react-router-dom';
 
-import { useAuth } from '../context/AuthContext';
+import { useAppSelector } from '../store';
+import { selectHasRole, selectIsAuthenticated } from '../store/authSlice';
 
 const AdminRoutes = () => {
-  const { isAuthenticated, hasRole } = useAuth();
+  const isAuthenticated = useAppSelector(selectIsAuthenticated);
+  const hasAdminRole = useAppSelector(selectHasRole('admin'));
 
-  if (!isAuthenticated || !hasRole('admin')) {
+  if (!isAuthenticated || !hasAdminRole) {
     return <Navigate to="/" replace />;
   }
 

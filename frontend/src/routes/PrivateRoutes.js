@@ -1,9 +1,10 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 
-import { useAuth } from '../context/AuthContext';
+import { useAppSelector } from '../store';
+import { selectIsAuthenticated } from '../store/authSlice';
 
 const PrivateRoutes = () => {
-  const { isAuthenticated } = useAuth();
+  const isAuthenticated = useAppSelector(selectIsAuthenticated);
   const location = useLocation();
 
   if (!isAuthenticated) {
