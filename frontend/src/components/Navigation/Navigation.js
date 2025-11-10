@@ -9,8 +9,11 @@ import Container from 'react-bootstrap/Container';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { useClickAway } from '@uidotdev/usehooks';
 import { useDispatch, useSelector } from 'react-redux';
+import bell from '../../static/bell.png';
+import cart from '../../static/shopping-cart.png';
 
 const Navigation = () => {
+    const location = useLocation();
     const [query, setQuery] = useState(null);
     const [reloadTrigger, setReloadTrigger] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
@@ -29,6 +32,9 @@ const Navigation = () => {
         }
     };
 
+    if(location.pathname === '/login'){
+        return null;
+    }
     return (
         <>
             <div className="header-top px-3 justify-content-end align-items-center d-none d-lg-flex">
@@ -104,20 +110,13 @@ const Navigation = () => {
                                         className="form-control"
                                         placeholder="Tìm kiếm sản phẩm"
                                         value={query}
-                                        onChange={(e) =>
-                                            setQuery(e.target.value)
-                                        }
-                                        onKeyDown={(event) =>
-                                            handlePressEnter(event)
-                                        }
+                                        onChange={(e) => setQuery(e.target.value)}
+                                        onKeyDown={(event) => handlePressEnter(event)}
                                         style={{ borderColor: "white" }}
                                     />
-                                    <button
-                                        type="button"
-                                        onClick={() => {
-                                            setQuery("");
-                                            setReloadTrigger((prev) => !prev);
-                                        }}
+                                    <button 
+                                        type="button" 
+                                        onClick={() => { setQuery(""); setReloadTrigger((prev) => !prev); }}
                                         className="btn"
                                         hidden
                                     >
@@ -125,35 +124,37 @@ const Navigation = () => {
                                     </button>
                                     <button
                                         className="btn"
-                                        style={{
-                                            backgroundColor: "rgb(30, 66, 149)",
-                                        }}
-                                        onClick={() => {
-                                            setCurrentPage(1);
-                                            handleSearch();
-                                        }}
+                                        style={{ backgroundColor: "rgb(30, 66, 149)", }}
+                                        onClick={() => { setCurrentPage(1); handleSearch(); }}
                                     >
-                                        <i
-                                            className="fa fa-search"
-                                            style={{ color: "white" }}
-                                        ></i>
+                                        <i className="fa fa-search" style={{ color: "white" }}></i>
                                     </button>
                                 </div>
                             </div>
                         </div>
                         <Nav className="flex-grow-1 justify-content-end">
                             <NavLink to="/cart" exact className="nav-link">
-                                <i className="fa fa-shopping-cart fa-lg nav-icon" style={{color:"rgba(66, 66, 66, 1)"}}></i>
+                                <img 
+                                    src={cart}
+                                    style={{ width: "26px", height: "26px" }}
+                                    className="mx-auto"
+                                    alt="Shopping cart"
+                                />
                             </NavLink>
                             <NavLink to="/notification" exact className="nav-link">
-                                <i className="fa fa-bell-o fa-lg nav-icon" style={{color:"rgba(66, 66, 66, 1)"}}></i>
+                                <img 
+                                    src={bell}
+                                    style={{ width: "28px", height: "28px" }}
+                                    className="mx-auto"
+                                    alt="Notification"
+                                />
                             </NavLink>
                             <Dropdown as="li">
                                 <Dropdown.Toggle as="a" className="nav-link">
-                                    <i className="fa fa-user-circle-o fa-lg nav-icon" style={{color:"rgba(66, 66, 66, 1)"}}></i>
+                                    <i className="fa fa-user-circle fa-lg" style={{color:"rgba(66, 66, 66, 1)"}}></i>
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu align="end">
-                                    <Dropdown.Item as={NavLink} to="/account"><i class="fa fa-cog nav-item"></i>Tài khoản</Dropdown.Item>
+                                    <Dropdown.Item as={NavLink} to="/account"><i class="fa fa-cog nav-item"></i>Hồ sơ</Dropdown.Item>
                                     <Dropdown.Item as={NavLink} to="/order"><i class="fa fa-file-text-o nav-item"></i>Đơn hàng</Dropdown.Item>
                                     <Dropdown.Item as={NavLink} to="/favourite"><i class="fa fa-heart-o nav-item"></i>Yêu thích</Dropdown.Item>
                                     <Dropdown.Item as={NavLink} to="/"><i class="fa fa-sign-out nav-item"></i>Đăng xuất</Dropdown.Item>
