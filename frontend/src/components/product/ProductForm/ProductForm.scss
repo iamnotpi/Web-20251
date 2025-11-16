@@ -1,0 +1,101 @@
+@import '../../Common/Common.scss';
+
+.product-form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(15, 23, 42, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 1050;
+}
+
+.product-form-card {
+  width: min(720px, 100%);
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: rgba(15, 23, 42, 0.24) 0px 28px 50px -20px;
+  overflow: hidden;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    border-bottom: 1px solid #e5e7eb;
+
+    h2 {
+      margin: 0;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #1f2933;
+    }
+  }
+}
+
+.product-form {
+  padding: 24px;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    span {
+      font-weight: 600;
+      color: #1f2933;
+    }
+
+    input,
+    textarea,
+    select {
+      border: 1px solid #d2d6dc;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 0.95rem;
+      color: #1f2933;
+
+      &:focus {
+        border-color: rgb(30, 66, 149);
+        box-shadow: 0 0 0 3px rgba(30, 66, 149, 0.2);
+        outline: none;
+      }
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    &--full {
+      grid-column: 1 / -1;
+    }
+  }
+
+  &__error {
+    color: #dc2626;
+    font-size: 0.82rem;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+  }
+}
+

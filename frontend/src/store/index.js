@@ -1,18 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { useDispatch, useSelector } from 'react-redux';
-
-import appReducer from './appSlice';
-import authReducer from './authSlice';
-import cartReducer from './cartSlice';
+import authReducer from './slices/authSlice';
+import productReducer from './slices/productSlice';
 
 export const store = configureStore({
   reducer: {
-    app: appReducer,
     auth: authReducer,
-    cart: cartReducer,
+    products: productReducer,
   },
 });
 
-export const useAppDispatch = () => useDispatch();
-export const useAppSelector = useSelector;
+export const selectRootState = () => store.getState();
 
+export default store;
